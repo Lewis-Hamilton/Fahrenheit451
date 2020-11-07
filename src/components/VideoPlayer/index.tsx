@@ -35,11 +35,13 @@ const VideoPlayer = () => {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={8}>
-        <Player
-          playsInline
-          poster={playingVideo?.thumbnail}
+        <iframe
           src={playingVideo?.url}
-        />
+          width='640'
+          height='480'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          allowFullScreen={true}
+        ></iframe>
       </Grid>
       <Grid direction='column' item xs={12} sm={4}>
         {videos.body.map((video) => (
