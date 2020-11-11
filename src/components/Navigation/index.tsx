@@ -20,9 +20,8 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
-import { Container } from "@material-ui/core";
+import HomeIcon from "@material-ui/icons/Home";
+import YouTubeIcon from '@material-ui/icons/YouTube';
 
 const drawerWidth = 240;
 
@@ -117,7 +116,7 @@ export const Navigation: FunctionComponent = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
-            Persistent drawer
+            Conservative Christian
           </Typography>
         </Toolbar>
       </AppBar>
@@ -141,21 +140,10 @@ export const Navigation: FunctionComponent = ({ children }) => {
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          {["Home", "Videos"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index % 2 === 0 ? <HomeIcon /> : <YouTubeIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
