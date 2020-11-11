@@ -7,10 +7,14 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import {ThemeProvider} from "@material-ui/core/styles";
 import { createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
 
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
+    primary: {
+      main: '#d82129',
+    }
   },
 });
 

@@ -117,7 +117,7 @@ export const Navigation: FunctionComponent = ({ children }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap>
-            Persistent drawer
+            Conservative Christian
           </Typography>
         </Toolbar>
       </AppBar>
