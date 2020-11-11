@@ -22,6 +22,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import YouTubeIcon from '@material-ui/icons/YouTube';
+import { RouteComponentProps } from 'react-router-dom';
+
+interface Props extends RouteComponentProps<any, any, any> { }
 
 const drawerWidth = 240;
 
@@ -83,10 +86,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Navigation: FunctionComponent = ({ children }) => {
+export const Navigation: FunctionComponent = ({ children }, props: Props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const pushToRoute = (route: string) => {
+    props.history.push(route);
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -140,14 +146,18 @@ export const Navigation: FunctionComponent = ({ children }) => {
         </div>
         <Divider />
         <List>
-          {["Home", "Videos"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <YouTubeIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button onClick={() => pushToRoute('/')} >
+            <ListItemIcon>
+              <HomeIcon/>
+            </ListItemIcon>
+            <ListItemText primary='Home'/>
+          </ListItem>
+           <ListItem button onClick={() => pushToRoute('/videos')}>
+            <ListItemIcon>
+              <YouTubeIcon/>
+            </ListItemIcon>
+            <ListItemText primary='Videos'/>
+          </ListItem>
         </List>
       </Drawer>
       <main

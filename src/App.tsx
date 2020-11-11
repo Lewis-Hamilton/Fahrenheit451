@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import VideoPlayer from "./components/VideoPlayer";
@@ -22,7 +23,8 @@ const App = () => {
     <Router>
       <Switch>
         <Navigation>
-          <Route exact path='/' component={Dashboard} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/videos' component={Dashboard} />
           <Route exact path='/watch/:id' component={VideoPlayer} />
         </Navigation>
       </Switch>
