@@ -24,6 +24,7 @@ const App = () => {
       <Switch>
         <Navigation>
           <Route exact path='/' component={Home} />
+          <Route exact path='/home' component={Home} />
           <Route exact path='/videos' component={Dashboard} />
           <Route exact path='/watch/:id' component={VideoPlayer} />
         </Navigation>

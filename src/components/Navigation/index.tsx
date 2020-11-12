@@ -22,6 +22,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import YouTubeIcon from '@material-ui/icons/YouTube';
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { RouteComponentProps } from 'react-router-dom';
 
 interface Props extends RouteComponentProps<any, any, any> { }
@@ -146,7 +148,7 @@ export const Navigation: FunctionComponent = ({ children }, props: Props) => {
         </div>
         <Divider />
         <List>
-          <ListItem button onClick={() => pushToRoute('/')} >
+          <ListItem button onClick={() => pushToRoute('/home')} >
             <ListItemIcon>
               <HomeIcon/>
             </ListItemIcon>
@@ -154,9 +156,24 @@ export const Navigation: FunctionComponent = ({ children }, props: Props) => {
           </ListItem>
            <ListItem button onClick={() => pushToRoute('/videos')}>
             <ListItemIcon>
-              <YouTubeIcon/>
+              <VideoLibraryIcon/>
             </ListItemIcon>
             <ListItemText primary='Videos'/>
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => {window.open('https://www.youtube.com/channel/UCAqB5OuNHZXMChmbVbLZkaw', '_blank')}}>
+            <ListItemIcon>
+              <YouTubeIcon/>
+            </ListItemIcon>
+            <ListItemText primary='YouTube'/>
+          </ListItem>
+          <ListItem button onClick={() => { window.open('https://parler.com/profile/OfficialConservativeChristian/posts', '_blank') }}>
+            <ListItemIcon>
+              <AccountBoxIcon/>
+            </ListItemIcon>
+            <ListItemText primary='Parler'/>
           </ListItem>
         </List>
       </Drawer>
