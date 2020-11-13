@@ -22,6 +22,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import YouTubeIcon from "@material-ui/icons/YouTube";
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -90,6 +92,9 @@ export const Navigation: FunctionComponent = ({ children }) => {
   const history = useHistory();
 
   const [open, setOpen] = React.useState(false);
+  const pushToRoute = (route: string) => {
+    history.push(route);
+  }
 
   const PushToRoute = (route: string) => {
     history.push(route);
@@ -147,14 +152,33 @@ export const Navigation: FunctionComponent = ({ children }) => {
         </div>
         <Divider />
         <List>
-          {["Home", "Videos"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <YouTubeIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button onClick={() => pushToRoute('/home')} >
+            <ListItemIcon>
+              <HomeIcon/>
+            </ListItemIcon>
+            <ListItemText primary='Home'/>
+          </ListItem>
+           <ListItem button onClick={() => pushToRoute('/videos')}>
+            <ListItemIcon>
+              <VideoLibraryIcon/>
+            </ListItemIcon>
+            <ListItemText primary='Videos'/>
+          </ListItem>
+        </List>
+        <Divider />
+        <List>
+          <ListItem button onClick={() => {window.open('https://www.youtube.com/channel/UCAqB5OuNHZXMChmbVbLZkaw', '_blank')}}>
+            <ListItemIcon>
+              <YouTubeIcon/>
+            </ListItemIcon>
+            <ListItemText primary='YouTube'/>
+          </ListItem>
+          <ListItem button onClick={() => { window.open('https://parler.com/profile/OfficialConservativeChristian/posts', '_blank') }}>
+            <ListItemIcon>
+              <AccountBoxIcon/>
+            </ListItemIcon>
+            <ListItemText primary='Parler'/>
+          </ListItem>
         </List>
       </Drawer>
       <main
