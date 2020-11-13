@@ -21,7 +21,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
-import YouTubeIcon from '@material-ui/icons/YouTube';
+import YouTubeIcon from "@material-ui/icons/YouTube";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -86,7 +87,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export const Navigation: FunctionComponent = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
+
   const [open, setOpen] = React.useState(false);
+
+  const PushToRoute = (route: string) => {
+    history.push(route);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);

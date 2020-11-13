@@ -12,7 +12,7 @@ const theme = createMuiTheme({
 
 export const Layout: FunctionComponent = ({ children }) => {
   return (
-    <Container>
+    <Container maxWidth='xl'>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </Container>
   );
