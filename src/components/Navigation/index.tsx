@@ -21,12 +21,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
-import YouTubeIcon from '@material-ui/icons/YouTube';
+import YouTubeIcon from "@material-ui/icons/YouTube";
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import { RouteComponentProps } from 'react-router-dom';
-
-interface Props extends RouteComponentProps<any, any, any> { }
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -88,13 +86,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Navigation: FunctionComponent = ({ children }, props: Props) => {
+export const Navigation: FunctionComponent = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
+
   const [open, setOpen] = React.useState(false);
   const pushToRoute = (route: string) => {
-    props.history.push(route);
+    history.push(route);
   }
+
+  const PushToRoute = (route: string) => {
+    history.push(route);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);

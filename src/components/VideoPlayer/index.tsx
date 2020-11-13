@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid } from "@material-ui/core";
+import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { RootState } from "../../redux/reducers";
 import VideoPreview from "../VideoPreviews";
 import "./index.css";
+import { VideoCard } from "./VideoCard";
 
 const { Player } = require("video-react");
 
@@ -33,20 +34,30 @@ const VideoPlayer = () => {
   }, [location]);
 
   return (
-    <Grid container spacing={4}>
-      <Grid item xs={12} sm={8}>
-        <iframe
-          src={playingVideo?.url}
-          width='640'
-          height='480'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-          allowFullScreen={true}
-        ></iframe>
+    <Grid container spacing={1}>
+      <Grid container spacing={1} direction='column' item xs={12} sm={8}>
+        <Grid style={{ maxHeight: "700px" }} item xs={12} sm={12}>
+          <iframe
+            className='responsive-iframe'
+            src={playingVideo?.url}
+            allow='clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen={true}
+            frameBorder='0'
+          />
+        </Grid>
       </Grid>
-      <Grid direction='column' item xs={12} sm={4}>
+      <Grid
+        container
+        spacing={1}
+        direction='column'
+        item
+        xs={12}
+        sm={4}
+        zeroMinWidth
+      >
         {videos.body.map((video) => (
           <Grid key={video._id} item xs={12} sm={6}>
-            <VideoPreview {...video} />
+            <VideoCard {...video} />
           </Grid>
         ))}
       </Grid>
