@@ -1,15 +1,11 @@
-import { Card, CardContent, Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import ReactPlayer from "react-player";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { RootState } from "../../redux/reducers";
-import VideoPreview from "../VideoPreviews";
 import "./index.css";
 import { VideoCard } from "./VideoCard";
-
-const { Player } = require("video-react");
 
 type Video = {
   _id: string;
@@ -31,13 +27,14 @@ const VideoPlayer = () => {
     ).then((response) => {
       setPlayingVideo(response.data.body);
     });
-  }, [location]);
+  }, [location, _id]);
 
   return (
     <Grid container spacing={1}>
       <Grid container spacing={1} direction='column' item xs={12} sm={8}>
         <Grid style={{ maxHeight: "700px" }} item xs={12} sm={12}>
           <iframe
+            title={playingVideo?.title}
             className='responsive-iframe'
             src={playingVideo?.url}
             allow='clipboard-write; encrypted-media; gyroscope; picture-in-picture'
