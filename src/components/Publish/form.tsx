@@ -56,15 +56,18 @@ const PublishForm = (props: Props) => {
       thumbnail: thumbnail || uploadedImage,
       url,
     };
+    // TODO: ADD LOADING BAR
     setLoading(true);
     Axios.post(
       "https://susanwabbajacksucks.herokuapp.com/api/video/upload/manual",
       payload
     )
       .then((response) => {
+        // TODO: ADD SUCCESS TOAST
         console.log(response);
       })
       .catch((err) => {
+        // TODO: ADD ERROR TOAST
         console.log(err);
       })
       .finally(() => {
@@ -96,7 +99,6 @@ const PublishForm = (props: Props) => {
       reader.onload = function (e) {
         const dataUrl = reader.result;
         setUploadedImage(dataUrl as string);
-        console.log(dataUrl);
       };
 
       reader.readAsDataURL(file);
