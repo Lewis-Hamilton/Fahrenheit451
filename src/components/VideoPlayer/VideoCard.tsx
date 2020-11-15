@@ -2,14 +2,13 @@ import {
   Card,
   CardContent,
   Typography,
-  IconButton,
   CardMedia,
   createStyles,
   makeStyles,
   Theme,
-  useTheme,
 } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   _id: string;
@@ -50,9 +49,19 @@ const useStyles = makeStyles((theme: Theme) =>
 export const VideoCard = (props: Props) => {
   const { _id, title, description, thumbnail } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  const history = useHistory();
+
+  const viewVideo = (_id: string) => {
+    history.push(`/watch/${_id}`);
+  };
+
   return (
-    <Card elevation={0} className={classes.root}>
+    <Card
+      style={{ cursor: "pointer" }}
+      onClick={() => viewVideo(_id)}
+      elevation={0}
+      className={classes.root}
+    >
       <CardMedia className={classes.cover} image={thumbnail} title={title} />
       <div className={classes.details}>
         <CardContent className={classes.content}>

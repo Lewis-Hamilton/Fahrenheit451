@@ -8,6 +8,7 @@ import Axios from "axios";
 import { setVideos } from "./redux/slice/videoSlice";
 import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
+import PublishDashboard from "./components/Publish/dashboard";
 
 const App = () => {
   const dispatch: Dispatch = useDispatch();
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/home' component={Home} />
           <Route exact path='/videos' component={Dashboard} />
+          <Route exact path='/publish' component={PublishDashboard} />
           <Route exact path='/watch/:id' component={VideoPlayer} />
         </Navigation>
       </Switch>
