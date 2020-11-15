@@ -6,6 +6,7 @@ import {
   createStyles,
   makeStyles,
   Theme,
+  CardActionArea,
 } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      height: "100px",
     },
     details: {
       display: "flex",
@@ -56,20 +58,17 @@ export const VideoCard = (props: Props) => {
   };
 
   return (
-    <Card
-      style={{ cursor: "pointer" }}
-      onClick={() => viewVideo(_id)}
-      elevation={0}
-      className={classes.root}
-    >
+    <Card onClick={() => viewVideo(_id)} elevation={0} className={classes.root}>
       <CardMedia className={classes.cover} image={thumbnail} title={title} />
       <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography variant='body1'>{title}</Typography>
-          <Typography variant='body2' color='textSecondary'>
-            {description}
-          </Typography>
-        </CardContent>
+        <CardActionArea>
+          <CardContent className={classes.content}>
+            <Typography variant='body1'>{title}</Typography>
+            <Typography variant='body2' color='textSecondary'>
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
       </div>
     </Card>
   );

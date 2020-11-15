@@ -7,8 +7,6 @@ import VideoPreview from "../VideoPreviews";
 const Dashboard = () => {
   const videos = useSelector((state: RootState) => state.videos);
 
-  console.log(videos);
-
   return (
     <Grid container spacing={3}>
       {videos.body.map((video) => (

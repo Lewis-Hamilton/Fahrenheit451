@@ -31,27 +31,18 @@ const VideoPlayer = () => {
 
   return (
     <Grid container spacing={1}>
-      <Grid container spacing={1} direction='column' item xs={12} sm={8}>
-        <Grid style={{ maxHeight: "700px" }} item xs={12} sm={12}>
-          <iframe
-            title={playingVideo?.title}
-            className='responsive-iframe'
-            src={playingVideo?.url}
-            allow='clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen={true}
-            frameBorder='0'
-          />
-        </Grid>
+      <Grid style={{ minHeight: "700px" }} item xs={12} sm={12}>
+        <iframe
+          title={playingVideo?.title}
+          className='responsive-iframe'
+          src={playingVideo?.url}
+          allow='clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+          allowFullScreen={true}
+          frameBorder='0'
+        />
       </Grid>
-      <Grid
-        container
-        spacing={1}
-        direction='column'
-        item
-        xs={12}
-        sm={4}
-        zeroMinWidth
-      >
+
+      <Grid container spacing={1} item xs={12} sm={4} zeroMinWidth>
         {videos.body.map((video) => (
           <Grid key={video._id} item xs={12} sm={6}>
             <VideoCard {...video} />

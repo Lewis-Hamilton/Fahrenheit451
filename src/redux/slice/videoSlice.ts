@@ -6,6 +6,7 @@ type videoData = {
   description: string;
   thumbnail: string;
   url: string;
+  creation_date: string;
 };
 
 type Video = {
@@ -22,6 +23,7 @@ let initialState: Video = {
       description: "",
       thumbnail: "",
       url: "",
+      creation_date: "",
     },
   ],
 };
