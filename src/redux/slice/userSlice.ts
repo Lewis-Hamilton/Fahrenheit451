@@ -1,29 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type UserData = {
   uid: string;
-  email: string;
-  displayName: string;
-  icon: string;
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
 };
 
 let initialState: UserData = {
-  uid: '',
-  email: '',
-  displayName: '',
-  icon: '',
+  uid: "",
+  email: null,
+  displayName: null,
+  photoURL: null,
 };
 
 const userSlice = createSlice({
-  name: 'user',
-  initialState,
+  name: "user",
+  initialState: initialState,
   reducers: {
-    setUserData(state, action) {
-      const { uid, email, displayName, icon } = action.payload;
-      state.email = email;
-      state.uid = uid;
+    setUserData(state, action: PayloadAction<UserData>) {
+      const { uid, email, displayName, photoURL } = action.payload;
       state.displayName = displayName;
-      state.icon = icon;
+      state.uid = uid !== null ? uid : "";
+      state.photoURL = photoURL;
+      state.email = email;
     },
   },
 });

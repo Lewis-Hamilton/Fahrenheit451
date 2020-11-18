@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
-import videoSlice from "../slice/videoSlice";
+import videos from "../slice/videoSlice";
+import search from "../slice/searchSlice";
+import user from "../slice/userSlice";
 
 const rootReducer = combineReducers({
-  videos: videoSlice,
+  videos: videos,
+  search: search,
+  user: user,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

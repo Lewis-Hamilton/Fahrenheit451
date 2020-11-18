@@ -59,7 +59,7 @@ const PublishForm = (props: Props) => {
     // TODO: ADD LOADING BAR
     setLoading(true);
     Axios.post(
-      "https://susanwabbajacksucks.herokuapp.com/api/video/upload/manual",
+      "https://susanwabbajacksucks.herokuapp.com/api/video/upload/manual?thumbnail=file",
       payload
     )
       .then((response) => {

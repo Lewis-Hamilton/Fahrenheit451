@@ -8,6 +8,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import Axios from "axios";
+import { useDispatch } from "react-redux";
+import { deleteVideo } from "../../redux/slice/videoSlice";
 
 interface Props {
   _id: string;
@@ -23,22 +25,15 @@ interface Props {
 
 export default function ConfirmDialog(props: Props) {
   const { _id, title, open, option, handleClose } = props;
+  const dispatch = useDispatch();
 
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const Action = () => {
     if (option === "delete") {
-      Axios.delete(`https://susanwabbajacksucks.herokuapp.com/api/video/${_id}`)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          handleClose();
-        });
+      dispatch(deleteVideo(_id));
+      handleClose();
     }
   };
 
