@@ -1,41 +1,126 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createVideo,
+  getVideoById,
+  getVideos,
+  removeVideo,
+  Video,
+  VideoBody,
+  VideoResults,
+} from "../../api/susanwabbajacksucksAPI";
+import { AppThunk } from "../store";
 
-type videoData = {
-  _id: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  url: string;
+interface VideoState {
+  videoData: Record<string, Video>;
+  currentVideoData: string[];
+  isLoading: boolean;
+  error: string | null;
+}
+
+let initialState: VideoState = {
+  videoData: {},
+  currentVideoData: [],
+  isLoading: false,
+  error: null,
 };
 
-type Video = {
-  success: boolean;
-  body: videoData[];
-};
+function startLoading(state: VideoState) {
+  state.isLoading = true;
+}
 
-let initialState: Video = {
-  success: true,
-  body: [
-    {
-      _id: "",
-      title: "",
-      description: "",
-      thumbnail: "",
-      url: "",
-    },
-  ],
-};
+function loadingFailed(state: VideoState, action: PayloadAction<string>) {
+  state.isLoading = false;
+  state.error = action.payload;
+}
 
-const videoSlice = createSlice({
+const videos = createSlice({
   name: "videos",
-  initialState,
+  initialState: initialState,
   reducers: {
-    setVideos(state, action) {
-      state.body = action.payload.body;
+    postVideoStart: startLoading,
+    getVideoStart: startLoading,
+    getVideosStart: startLoading,
+    deleteVideoStart: startLoading,
+    getVideoSuccess(state, { payload }: PayloadAction<Video>) {
+      const { _id } = payload;
+      state.isLoading = false;
+      state.error = null;
+      state.videoData[_id] = payload;
     },
+    getVideosSuccess(state, { payload }: PayloadAction<VideoResults>) {
+      const { body } = payload;
+      state.isLoading = false;
+      state.error = null;
+
+      body.forEach((video) => {
+        state.videoData[video._id] = video;
+      });
+
+      state.currentVideoData = body.map((video) => video._id);
+    },
+    postVideoFailure: loadingFailed,
+    getVideoFailure: loadingFailed,
+    getVideosFailure: loadingFailed,
+    deleteVideoFailure: loadingFailed,
   },
 });
 
-export const { setVideos } = videoSlice.actions;
+export const {
+  getVideoStart,
+  getVideosStart,
+  getVideoSuccess,
+  getVideosSuccess,
+  getVideoFailure,
+  getVideosFailure,
+  postVideoFailure,
+  postVideoStart,
+  deleteVideoFailure,
+  deleteVideoStart,
+} = videos.actions;
 
-export default videoSlice.reducer;
+export default videos.reducer;
+
+export const fetchVideos = (): AppThunk => async (dispatch) => {
+  try {
+    dispatch(getVideosStart());
+    const videos = await getVideos();
+    dispatch(getVideosSuccess(videos));
+  } catch (err) {
+    dispatch(getVideosFailure(err.toString()));
+  }
+};
+
+export const fetchVideo = (_id: string): AppThunk => async (dispatch) => {
+  try {
+    dispatch(getVideoStart());
+    const video = await getVideoById(_id);
+    dispatch(getVideoSuccess(video.body));
+  } catch (err) {
+    dispatch(getVideoFailure(err.string()));
+  }
+};
+
+export const postVideo = (payload: VideoBody): AppThunk => async (dispatch) => {
+  try {
+    dispatch(postVideoStart());
+    const createdvideo = await createVideo(payload);
+    const _id = createdvideo.body._id;
+
+    const video = await getVideoById(_id);
+    dispatch(getVideoSuccess(video.body));
+  } catch (err) {
+    dispatch(postVideoFailure(err.toString()));
+  }
+};
+
+export const deleteVideo = (_id: string): AppThunk => async (dispatch) => {
+  try {
+    dispatch(deleteVideoStart());
+    await removeVideo(_id);
+
+    const videos = await getVideos();
+    dispatch(getVideosSuccess(videos));
+  } catch (err) {
+    dispatch(deleteVideoFailure(err));
+  }
+};
