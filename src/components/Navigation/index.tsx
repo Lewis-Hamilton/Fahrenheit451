@@ -22,9 +22,16 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
 import YouTubeIcon from "@material-ui/icons/YouTube";
-import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { useHistory } from "react-router-dom";
+import { CloudUpload, Publish } from "@material-ui/icons";
+import { Avatar, Icon, LinearProgress } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/reducers";
+import Logo from "../../media/ChannelLogo.png";
+import VideoSearch from "./videoSearch";
+import LoginMenu from "./LoginMenu";
 
 const drawerWidth = 240;
 
@@ -38,6 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+      backgroundColor: "#303030",
     },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -59,6 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
+      backgroundColor: "#303030",
     },
     drawerHeader: {
       display: "flex",
@@ -83,6 +92,9 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    grow: {
+      flexGrow: 0.4,
+    },
   })
 );
 
@@ -90,13 +102,10 @@ export const Navigation: FunctionComponent = ({ children }) => {
   const classes = useStyles();
   const theme = useTheme();
   const history = useHistory();
-
   const [open, setOpen] = React.useState(false);
-  const pushToRoute = (route: string) => {
-    history.push(route);
-  }
+  const { isLoading } = useSelector((state: RootState) => state.videos);
 
-  const PushToRoute = (route: string) => {
+  const pushToRoute = (route: string) => {
     history.push(route);
   };
 
@@ -108,16 +117,23 @@ export const Navigation: FunctionComponent = ({ children }) => {
     setOpen(false);
   };
 
+  const search = (event: React.FormEvent<HTMLDivElement>, value: string) => {
+    event.preventDefault();
+
+    pushToRoute(`/search?search=${value}`);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        elevation={0}
         position='fixed'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar style={{ minHeight: "75px" }}>
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -127,11 +143,19 @@ export const Navigation: FunctionComponent = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
+          <Avatar src={Logo} style={{ marginRight: "10px" }} />
           <Typography variant='h6' noWrap>
             Conservative Christian
           </Typography>
+          <div className={classes.grow} />
+          <VideoSearch search={search} />
+          <div style={{ flexGrow: 0.6 }} />
+          <LoginMenu />
         </Toolbar>
+        {isLoading ? <LinearProgress color='secondary' /> : null}
+        <Divider />
       </AppBar>
+
       <Drawer
         className={classes.drawer}
         variant='persistent'
@@ -152,32 +176,54 @@ export const Navigation: FunctionComponent = ({ children }) => {
         </div>
         <Divider />
         <List>
-          <ListItem button onClick={() => pushToRoute('/home')} >
+          <ListItem button onClick={() => pushToRoute("/home")}>
             <ListItemIcon>
-              <HomeIcon/>
+              <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary='Home'/>
+            <ListItemText primary='Home' />
           </ListItem>
-           <ListItem button onClick={() => pushToRoute('/videos')}>
+          <ListItem button onClick={() => pushToRoute("/videos")}>
             <ListItemIcon>
-              <VideoLibraryIcon/>
+              <VideoLibraryIcon />
             </ListItemIcon>
-            <ListItemText primary='Videos'/>
+            <ListItemText primary='Videos' />
+          </ListItem>
+          <ListItem button onClick={() => pushToRoute("/publish")}>
+            <ListItemIcon>
+              <Publish />
+            </ListItemIcon>
+            <ListItemText primary='Publish' />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button onClick={() => {window.open('https://www.youtube.com/channel/UCAqB5OuNHZXMChmbVbLZkaw', '_blank')}}>
+          <ListItem
+            button
+            onClick={() => {
+              window.open(
+                "https://www.youtube.com/channel/UCAqB5OuNHZXMChmbVbLZkaw",
+                "_blank"
+              );
+            }}
+          >
             <ListItemIcon>
-              <YouTubeIcon/>
+              <YouTubeIcon />
             </ListItemIcon>
-            <ListItemText primary='YouTube'/>
+            <ListItemText primary='YouTube' />
           </ListItem>
-          <ListItem button onClick={() => { window.open('https://parler.com/profile/OfficialConservativeChristian/posts', '_blank') }}>
+          <ListItem
+            button
+            onClick={() => {
+              window.open(
+                "https://parler.com/profile/OfficialConservativeChristian/posts",
+                "_blank"
+              );
+            }}
+          >
             <ListItemIcon>
-              <AccountBoxIcon/>
+              <AccountBoxIcon />
             </ListItemIcon>
-            <ListItemText primary='Parler'/>
+            <ListItemText primary='Parler' />
           </ListItem>
         </List>
       </Drawer>

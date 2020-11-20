@@ -2,14 +2,14 @@ import {
   Card,
   CardContent,
   Typography,
-  IconButton,
   CardMedia,
   createStyles,
   makeStyles,
   Theme,
-  useTheme,
+  CardActionArea,
 } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   _id: string;
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: "flex",
+      height: "100px",
     },
     details: {
       display: "flex",
@@ -50,17 +51,24 @@ const useStyles = makeStyles((theme: Theme) =>
 export const VideoCard = (props: Props) => {
   const { _id, title, description, thumbnail } = props;
   const classes = useStyles();
-  const theme = useTheme();
+  const history = useHistory();
+
+  const viewVideo = (_id: string) => {
+    history.push(`/watch/${_id}`);
+  };
+
   return (
-    <Card elevation={0} className={classes.root}>
+    <Card onClick={() => viewVideo(_id)} elevation={0} className={classes.root}>
       <CardMedia className={classes.cover} image={thumbnail} title={title} />
       <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography variant='body1'>{title}</Typography>
-          <Typography variant='body2' color='textSecondary'>
-            {description}
-          </Typography>
-        </CardContent>
+        <CardActionArea>
+          <CardContent className={classes.content}>
+            <Typography variant='body1'>{title}</Typography>
+            <Typography variant='body2' color='textSecondary'>
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
       </div>
     </Card>
   );
