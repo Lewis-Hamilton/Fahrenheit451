@@ -1,27 +1,8 @@
 import React from "react";
-import {
-  makeStyles,
-  createStyles,
-  Theme
-} from "@material-ui/core/styles";
-import { CssBaseline } from '@material-ui/core'
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      minHight: '100vh',
-      backgroundImage: `url(${process.env.PUBLIC_URL + "/home.jpg"})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
-    }
-  }));
 
 const Home = () => {
-  const classes = useStyles();
   return (
-    <div className={classes.root}><CssBaseline /><div>
-      <h1>Hello World</h1>
-    </div></div>
+    <img style={{maxWidth: '100%'}} src="https://firebasestorage.googleapis.com/v0/b/susanwabbajacksucks-80165.appspot.com/o/homepage.gif?alt=media&token=7d9d7a67-0871-4715-aa0f-92b6167c9274" />
   )
 }
 export default Home;
