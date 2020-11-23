@@ -16,7 +16,7 @@ import { useHistory } from "react-router-dom";
 import React from "react";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { red } from "@material-ui/core/colors";
-import Logo from "../../media/ChannelLogo.png";
+import Logo from "../../media/ChannelLogo.svg";
 import VideoMenu from "./videoMenu";
 import ConfirmDialog from "./confirmDialog";
 import moment from "moment";
