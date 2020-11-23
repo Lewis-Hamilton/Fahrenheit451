@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   return (
     <Grid container spacing={3}>
-      {videos.map((video) => (
+      {videos.reverse().map((video) => (
         <Grid key={video._id} item xs={12} sm={3}>
           <VideoPreview {...video} />
         </Grid>
