@@ -25,8 +25,7 @@ import YouTubeIcon from "@material-ui/icons/YouTube";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import { useHistory } from "react-router-dom";
-import { CloudUpload, Publish } from "@material-ui/icons";
-import { Avatar, Icon, LinearProgress } from "@material-ui/core";
+import { Avatar, LinearProgress } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import Logo from "../../media/ChannelLogo.svg";
@@ -189,13 +188,7 @@ export const Navigation: FunctionComponent = ({ children }) => {
             </ListItemIcon>
             <ListItemText primary='Videos' />
           </ListItem>
-          <ListItem button onClick={() => pushToRoute("/publish")}>
-            <ListItemIcon>
-              <Publish />
-            </ListItemIcon>
-            <ListItemText primary='Publish' />
-          </ListItem>
-              <ListItem button onClick={() => pushToRoute("/admindashboard")}>
+              <ListItem button onClick={() => pushToRoute("/admin/dashboard")}>
             <ListItemIcon>
               <SupervisorAccountIcon />
             </ListItemIcon>

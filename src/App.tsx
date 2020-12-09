@@ -4,8 +4,7 @@ import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import VideoPlayer from "./components/VideoPlayer";
-import PublishDashboard from "./components/Publish/dashboard";
-import AdminDashboard from "./components/AdminDashboard";
+import AdminDashboard from "./components/Admin/dashboard";
 import SearchResults from "./components/SearchResults";
 
 const App = () => {
@@ -16,10 +15,9 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/home' component={Home} />
           <Route exact path='/videos' component={Dashboard} />
-          <Route exact path='/publish' component={PublishDashboard} />
           <Route exact path='/watch/:id' component={VideoPlayer} />
-          <Route exact path='/search' component={SearchResults} />
-          <Route exact path='/admindashboard' component={AdminDashboard} />
+          <Route exact path='/search' component={SearchResults} /> 
+          <Route exact path='/admin/dashboard' component={AdminDashboard} />
         </Navigation>
       </Switch>
     </Router>

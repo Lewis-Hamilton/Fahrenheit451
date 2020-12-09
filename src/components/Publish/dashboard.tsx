@@ -11,7 +11,7 @@ const PublishDashboard = () => {
   });
 
   return (
-    <Grid container justify='center'>
+    <Grid container justify='flex-start'>
       <Card elevation={0}>
         <CardContent>
           <Grid
