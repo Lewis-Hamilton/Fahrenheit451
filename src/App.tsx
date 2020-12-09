@@ -6,6 +6,7 @@ import { Navigation } from "./components/Navigation";
 import VideoPlayer from "./components/VideoPlayer";
 import PublishDashboard from "./components/Publish/dashboard";
 import SearchResults from "./components/SearchResults";
+import { ToastContainer, toast } from "react-toastify";
 
 const App = () => {
   return (
