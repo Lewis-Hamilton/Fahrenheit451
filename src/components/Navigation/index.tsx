@@ -29,7 +29,7 @@ import { CloudUpload, Publish } from "@material-ui/icons";
 import { Avatar, Icon, LinearProgress } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
-import Logo from "../../media/ChannelLogo.png";
+import Logo from "../../media/ChannelLogo.svg";
 import VideoSearch from "./videoSearch";
 import LoginMenu from "./LoginMenu";
 
