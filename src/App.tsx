@@ -1,11 +1,12 @@
 import React from "react";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Videos";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import VideoPlayer from "./components/VideoPlayer";
 import PublishDashboard from "./components/Publish/dashboard";
 import SearchResults from "./components/SearchResults";
+import { ToastContainer, toast } from "react-toastify";
 
 const App = () => {
   return (
