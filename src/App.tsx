@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navigation } from "./components/Navigation";
 import VideoPlayer from "./components/VideoPlayer";
 import PublishDashboard from "./components/Publish/dashboard";
+import AdminDashboard from "./components/AdminDashboard";
 import SearchResults from "./components/SearchResults";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path='/publish' component={PublishDashboard} />
           <Route exact path='/watch/:id' component={VideoPlayer} />
           <Route exact path='/search' component={SearchResults} />
+          <Route exact path='/admindashboard' component={AdminDashboard} />
         </Navigation>
       </Switch>
     </Router>

@@ -32,6 +32,7 @@ import { RootState } from "../../redux/reducers";
 import Logo from "../../media/ChannelLogo.svg";
 import VideoSearch from "./videoSearch";
 import LoginMenu from "./LoginMenu";
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
 const drawerWidth = 240;
 
@@ -193,6 +194,12 @@ export const Navigation: FunctionComponent = ({ children }) => {
               <Publish />
             </ListItemIcon>
             <ListItemText primary='Publish' />
+          </ListItem>
+              <ListItem button onClick={() => pushToRoute("/admindashboard")}>
+            <ListItemIcon>
+              <SupervisorAccountIcon />
+            </ListItemIcon>
+            <ListItemText primary='Admin Dashboard' />
           </ListItem>
         </List>
         <Divider />
