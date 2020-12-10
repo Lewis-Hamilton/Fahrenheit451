@@ -7,7 +7,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
-import Axios from "axios";
 import { useDispatch } from "react-redux";
 import { deleteVideo } from "../../redux/slice/videoSlice";
 
@@ -46,7 +45,7 @@ export default function ConfirmDialog(props: Props) {
         aria-labelledby='responsive-dialog-title'
       >
         <DialogTitle id='responsive-dialog-title'>
-          {"susanwabbajacksucks"}
+          {"Warning"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
