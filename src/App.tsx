@@ -14,6 +14,7 @@ const App = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
+  const admin = useSelector((state: RootState) => state.admin);
 
   useEffect(() => {
     if (user.uid) {
@@ -30,7 +31,9 @@ const App = () => {
           <Route exact path='/videos' component={Dashboard} />
           <Route exact path='/watch/:id' component={VideoPlayer} />
           <Route exact path='/search' component={SearchResults} /> 
-          <Route exact path='/admin/dashboard' component={AdminDashboard} />
+          {admin.admin ?
+            <Route exact path='/admin/dashboard' component={AdminDashboard} />
+            : null}
         </Navigation>
       </Switch>
     </Router>

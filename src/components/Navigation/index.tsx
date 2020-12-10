@@ -104,6 +104,8 @@ export const Navigation: FunctionComponent = ({ children }) => {
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const { isLoading } = useSelector((state: RootState) => state.videos);
+  const admin = useSelector((state: RootState) => state.admin);
+
 
   const pushToRoute = (route: string) => {
     history.push(route);
@@ -186,14 +188,16 @@ export const Navigation: FunctionComponent = ({ children }) => {
             <ListItemIcon>
               <VideoLibraryIcon />
             </ListItemIcon>
-            <ListItemText primary='Videos' />
+            <ListItemText primary='Videos' /> 
           </ListItem>
-              <ListItem button onClick={() => pushToRoute("/admin/dashboard")}>
+          {admin.admin ? 
+          <ListItem button onClick={() => pushToRoute("/admin/dashboard")}>
             <ListItemIcon>
               <SupervisorAccountIcon />
             </ListItemIcon>
             <ListItemText primary='Admin Dashboard' />
           </ListItem>
+          :null}
         </List>
         <Divider />
         <List>
