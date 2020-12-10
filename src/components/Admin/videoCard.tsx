@@ -5,15 +5,16 @@ import {
   CardContent,
   Typography,
   makeStyles,
-  Avatar,
   Grid,
   createStyles,
   Theme,
 } from "@material-ui/core";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { red } from "@material-ui/core/colors";
-import Logo from "../../media/ChannelLogo.svg";
+import ConfirmDialog from "./confirmDialog";
 import moment from "moment";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -44,9 +45,18 @@ interface Props {
 
 const VideoPreview = (props: Props) => {
   const history = useHistory();
+  const [open, setOpen] = React.useState(false);
 
   const viewVideo = (_id: string) => {
     history.push(`/watch/${_id}`);
+  };
+
+  const handleClickOpenDialog = () => {
+    setOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpen(false);
   };
 
   const classes = useStyles();
@@ -61,37 +71,30 @@ const VideoPreview = (props: Props) => {
             image={thumbnail}
             title={title}
           />
+          </CardActionArea>
           <CardContent>
             <Grid container spacing={0}>
-              <Grid item xs={2}>
-                <Avatar
-                  sizes='small'
-                  src={Logo}
-                  aria-label='recipe'
-                  className={classes.avatar}
-                ></Avatar>
-              </Grid>
               <Grid item xs={10}>
                 <Typography gutterBottom variant='h6' component='h2'>
                   {title}
                 </Typography>
               </Grid>
-              <Grid item xs={2}></Grid>
-              <Grid item xs={10}>
-                <Typography color='textSecondary' component='p'>
-                  Conservative Christian
-                </Typography>
-              </Grid>
-              <Grid item xs={2}></Grid>
               <Grid item xs={10}>
                 <Typography color='textSecondary' component='p'>
                   Posted {moment(creation_date, "YYYYMMDD").fromNow()}
                 </Typography>
               </Grid>
+              <Grid item><EditIcon /></Grid>
+              <Grid item><DeleteIcon onClick={handleClickOpenDialog} /></Grid>
             </Grid>
           </CardContent>
-        </CardActionArea>
       </Card>
+      <ConfirmDialog
+        {...props}
+        option={"delete"}
+        open={open}
+        handleClose={handleCloseDialog}
+      />
     </>
   );
 };

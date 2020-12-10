@@ -4,7 +4,7 @@ import { Grid, List, ListItem } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import { fetchVideos } from "../../redux/slice/videoSlice";
-import VideoPreview from "../VideoPreviews";
+import VideoPreview from "./videoCard";
 
 const AdminDashboard = () => {
     const dispatch = useDispatch();
