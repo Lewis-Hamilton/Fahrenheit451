@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,8 +6,21 @@ import { Navigation } from "./components/Navigation";
 import VideoPlayer from "./components/VideoPlayer";
 import AdminDashboard from "./components/Admin/dashboard";
 import SearchResults from "./components/SearchResults";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./redux/reducers";
+import { fetchAdmin } from "./redux/slice/adminSlice";
 
 const App = () => {
+
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+
+  useEffect(() => {
+    if (user.uid) {
+      dispatch(fetchAdmin(user.uid));
+    }
+  }, [user.uid]);
+
   return (
     <Router>
       <Switch>

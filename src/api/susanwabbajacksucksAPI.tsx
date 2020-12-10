@@ -20,6 +20,11 @@ export interface VideoByIDResult {
   body: Video;
 }
 
+export interface AdminByUidResult {
+  success: boolean;
+  body: boolean;
+}
+
 export interface VideoBody {
   title: string;
   description: string;
@@ -45,6 +50,17 @@ export async function getVideoById(_id: string) {
   try {
     const videoResponse = await axios.get<VideoByIDResult>(url);
     return videoResponse.data;
+  } catch (err) {
+    throw err;
+  }
+}
+
+export async function getAdminByUid(uid: string) {
+  const url = `${endpoint}/admin/${uid}`;
+
+  try {
+    const adminResponse = await axios.get<AdminByUidResult>(url);
+    return adminResponse.data;
   } catch (err) {
     throw err;
   }
