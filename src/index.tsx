@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import { Layout } from "./components/Layout";
 import "./config/firebaseInit";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <Provider store={store}>
