@@ -3,4 +3,5 @@ import firebase from 'firebase';
 import config from './firebaseConfig';
 
 const firebaseInit = firebase.initializeApp(config);
+export const firebaseAnalytics = firebase.analytics();
 export default firebaseInit.firestore();
