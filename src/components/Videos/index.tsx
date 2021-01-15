@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import { fetchVideos } from "../../redux/slice/videoSlice";
 import VideoPreview from "../VideoPreviews";
+import { TitleComponent } from '../Title/TitleComponent';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -20,13 +21,16 @@ const Dashboard = () => {
   }, []);
 
   return (
+    <>
+      <TitleComponent title= "Videos"/>
     <Grid container spacing={3}>
       {videos.reverse().map((video) => (
         <Grid key={video._id} item xs={12} sm={3}>
           <VideoPreview {...video} />
         </Grid>
       ))}
-    </Grid>
+      </Grid>
+      </>
   );
 };
 

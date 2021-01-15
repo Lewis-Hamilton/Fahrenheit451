@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/reducers";
 import { fetchVideos } from "../../redux/slice/videoSlice";
 import VideoPreview from "./videoCard";
+import { TitleComponent } from '../Title/TitleComponent';
 
 const AdminDashboard = () => {
     const dispatch = useDispatch();
@@ -20,6 +21,8 @@ const AdminDashboard = () => {
   }, []);
 
   return (
+    <>
+    <TitleComponent title="Admin"/>
     <Grid container spacing={3}>
       <Grid item xs={12} sm={6}>
         <Publish />
@@ -32,8 +35,9 @@ const AdminDashboard = () => {
         </ListItem>
       ))}
         </List>
-      </Grid>
     </Grid>
+    </Grid>
+    </>
   )
 }
 export default AdminDashboard;
