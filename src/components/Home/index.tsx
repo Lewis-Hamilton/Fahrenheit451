@@ -1,11 +1,27 @@
 import React from "react";
 import { TitleComponent } from '../Title/TitleComponent';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
 
 const Home = () => {
+  const history = useHistory();
+  const pushToRoute = (route: string) => {
+    history.push(route);
+  };
+
   return (
     <>
       <TitleComponent title="Home" />
-      <img alt="Conservative Christian gif" style={{maxWidth: '100%'}} src="https://firebasestorage.googleapis.com/v0/b/susanwabbajacksucks-80165.appspot.com/o/homepage.gif?alt=media&token=7d9d7a67-0871-4715-aa0f-92b6167c9274" />
+      <Grid style={{textAlign:'center'}}>
+        <Grid item>
+          <Typography variant="h1" component="h2" gutterBottom>Susan Wabbajack Sucks</Typography>
+        </Grid>
+        <Grid item>
+          <Button onClick={() => pushToRoute("/videos")} variant="outlined">Start Watching Now</Button>
+        </Grid>
+      </Grid>
     </>
   )
 }
