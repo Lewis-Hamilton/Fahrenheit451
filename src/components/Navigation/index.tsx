@@ -145,7 +145,7 @@ export const Navigation: FunctionComponent = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar src={Logo} style={{ marginRight: "10px" }} />
+          <Avatar alt="Conservative Christian logo" src={Logo} style={{ marginRight: "10px" }} />
           <Typography variant='h6' noWrap>
             Conservative Christian
           </Typography>
