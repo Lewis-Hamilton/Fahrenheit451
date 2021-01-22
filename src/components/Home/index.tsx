@@ -14,14 +14,16 @@ const Home = () => {
   return (
     <>
       <TitleComponent title="Home" />
-      <Grid style={{textAlign:'center'}}>
+      <div style={{ backgroundImage: 'url("/banner.png")', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '50vw',}}>
+        <Grid style={{ paddingTop: '20%', textAlign: 'center'}}>
         <Grid item>
           <Typography variant="h1" component="h2" gutterBottom>Susan Wabbajack Sucks</Typography>
         </Grid>
         <Grid item>
-          <Button onClick={() => pushToRoute("/videos")} variant="outlined">Start Watching Now</Button>
+          <Button size="large" onClick={() => pushToRoute("/videos")} variant="outlined">Start Watching Now</Button>
         </Grid>
-      </Grid>
+        </Grid>
+      </div>
     </>
   )
 }

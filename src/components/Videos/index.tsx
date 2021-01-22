@@ -23,7 +23,7 @@ const Dashboard = () => {
   return (
     <>
       <TitleComponent title= "Videos"/>
-    <Grid container spacing={3}>
+      <Grid style={{padding: '2%' }} container spacing={3}>
       {videos.reverse().map((video) => (
         <Grid key={video._id} item xs={12} sm={3}>
           <VideoPreview {...video} />
