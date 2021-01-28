@@ -20,10 +20,10 @@ interface Props {
 }
 
 const FormSettings = (props: Props) => {
-  const { setFormSettings, ...state } = props;
+  const {setFormSettings, ...state} = props;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormSettings({ ...state, [event.target.name]: event.target.checked });
+    setFormSettings({...state, [event.target.name]: event.target.checked});
   };
 
   return (

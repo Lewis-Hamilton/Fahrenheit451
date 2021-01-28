@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, {FunctionComponent} from "react";
 import clsx from "clsx";
 import {
   makeStyles,
@@ -24,14 +24,15 @@ import HomeIcon from "@material-ui/icons/Home";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
-import { useHistory } from "react-router-dom";
-import { Avatar, LinearProgress } from "@material-ui/core";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/reducers";
+import {useHistory} from "react-router-dom";
+import {Avatar, LinearProgress} from "@material-ui/core";
+import {useSelector} from "react-redux";
+import {RootState} from "../../redux/reducers";
 import Logo from "../../media/ChannelLogo.svg";
 import VideoSearch from "./videoSearch";
 import LoginMenu from "./LoginMenu";
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import PropTypes from "prop-types";
 
 const drawerWidth = 240;
 
@@ -94,15 +95,15 @@ const useStyles = makeStyles((theme: Theme) =>
     grow: {
       flexGrow: 0.4,
     },
-  })
+  }),
 );
 
-export const Navigation: FunctionComponent = ({ children }) => {
+export const Navigation: FunctionComponent = ({children}) => {
   const classes = useStyles();
   const theme = useTheme();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
-  const { isLoading } = useSelector((state: RootState) => state.videos);
+  const {isLoading} = useSelector((state: RootState) => state.videos);
   const admin = useSelector((state: RootState) => state.admin);
 
 
@@ -134,7 +135,7 @@ export const Navigation: FunctionComponent = ({ children }) => {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar style={{ minHeight: "75px" }}>
+        <Toolbar style={{minHeight: "75px"}}>
           <IconButton
             color='inherit'
             aria-label='open drawer'
@@ -144,13 +145,17 @@ export const Navigation: FunctionComponent = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar alt="Conservative Christian logo" src={Logo} style={{ marginRight: "10px" }} />
+          <Avatar
+            alt="Conservative Christian logo"
+            src={Logo}
+            style={{marginRight: "10px"}}
+          />
           <Typography variant='h6' noWrap>
             Conservative Christian
           </Typography>
           <div className={classes.grow} />
           <VideoSearch search={search} />
-          <div style={{ flexGrow: 0.6 }} />
+          <div style={{flexGrow: 0.6}} />
           <LoginMenu />
         </Toolbar>
         {isLoading ? <LinearProgress color='secondary' /> : null}
@@ -187,16 +192,16 @@ export const Navigation: FunctionComponent = ({ children }) => {
             <ListItemIcon>
               <VideoLibraryIcon />
             </ListItemIcon>
-            <ListItemText primary='Videos' /> 
+            <ListItemText primary='Videos' />
           </ListItem>
-          {admin.admin ? 
+          {admin.admin ?
           <ListItem button onClick={() => pushToRoute("/admin/dashboard")}>
             <ListItemIcon>
               <SupervisorAccountIcon />
             </ListItemIcon>
             <ListItemText primary='Admin Dashboard' />
-          </ListItem>
-          :null}
+          </ListItem>:
+          null}
         </List>
         <Divider />
         <List>
@@ -204,8 +209,8 @@ export const Navigation: FunctionComponent = ({ children }) => {
             button
             onClick={() => {
               window.open(
-                "https://www.youtube.com/channel/UCAqB5OuNHZXMChmbVbLZkaw",
-                "_blank"
+                  "https://www.youtube.com/channel/UCAqB5OuNHZXMChmbVbLZkaw",
+                  "_blank",
               );
             }}
           >
@@ -218,8 +223,8 @@ export const Navigation: FunctionComponent = ({ children }) => {
             button
             onClick={() => {
               window.open(
-                "https://parler.com/profile/OfficialConservativeChristian/posts",
-                "_blank"
+                  "https://parler.com/profile/OfficialConservativeChristian/posts",
+                  "_blank",
               );
             }}
           >
@@ -240,4 +245,8 @@ export const Navigation: FunctionComponent = ({ children }) => {
       </main>
     </div>
   );
+};
+
+Navigation.propTypes = {
+  children: PropTypes.any,
 };

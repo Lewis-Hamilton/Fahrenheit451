@@ -10,9 +10,9 @@ import {
   createStyles,
   Theme,
 } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import React from "react";
-import { red } from "@material-ui/core/colors";
+import {red} from "@material-ui/core/colors";
 import Logo from "../../media/ChannelLogo.svg";
 import moment from "moment";
 
@@ -30,16 +30,15 @@ const useStyles = makeStyles((theme: Theme) =>
       width: theme.spacing(5),
       height: theme.spacing(5),
     },
-  })
+  }),
 );
 
 interface Props {
   _id: string;
   title: string;
-  description: string;
   thumbnail: string;
   url: string;
-  creation_date: string;
+  creationDate: string;
 }
 
 const VideoPreview = (props: Props) => {
@@ -50,7 +49,7 @@ const VideoPreview = (props: Props) => {
   };
 
   const classes = useStyles();
-  const { _id, title, description, thumbnail, creation_date } = props;
+  const {_id, title, thumbnail, creationDate} = props;
 
   return (
     <>
@@ -85,7 +84,7 @@ const VideoPreview = (props: Props) => {
               <Grid item xs={2}></Grid>
               <Grid item xs={10}>
                 <Typography color='textSecondary' component='p'>
-                  Posted {moment(creation_date, "YYYYMMDD").fromNow()}
+                  Posted {moment(creationDate, "YYYYMMDD").fromNow()}
                 </Typography>
               </Grid>
             </Grid>

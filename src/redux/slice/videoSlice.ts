@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {
   createVideo,
   getVideoById,
@@ -8,7 +8,7 @@ import {
   VideoBody,
   VideoResults,
 } from "../../api/susanwabbajacksucksAPI";
-import { AppThunk } from "../store";
+import {AppThunk} from "../store";
 
 interface VideoState {
   videoData: Record<string, Video>;
@@ -17,7 +17,7 @@ interface VideoState {
   error: string | null;
 }
 
-let initialState: VideoState = {
+const initialState: VideoState = {
   videoData: {},
   currentVideoData: [],
   isLoading: false,
@@ -41,14 +41,14 @@ const videos = createSlice({
     getVideoStart: startLoading,
     getVideosStart: startLoading,
     deleteVideoStart: startLoading,
-    getVideoSuccess(state, { payload }: PayloadAction<Video>) {
-      const { _id } = payload;
+    getVideoSuccess(state, {payload}: PayloadAction<Video>) {
+      const {_id} = payload;
       state.isLoading = false;
       state.error = null;
       state.videoData[_id] = payload;
     },
-    getVideosSuccess(state, { payload }: PayloadAction<VideoResults>) {
-      const { body } = payload;
+    getVideosSuccess(state, {payload}: PayloadAction<VideoResults>) {
+      const {body} = payload;
       state.isLoading = false;
       state.error = null;
 

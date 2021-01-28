@@ -1,5 +1,5 @@
-import { Card, CardContent, Grid } from "@material-ui/core";
-import React, { useState } from "react";
+import {Card, CardContent, Grid} from "@material-ui/core";
+import React, {useState} from "react";
 import PublishForm from "./form";
 import FormSettings from "./formSettings";
 

@@ -6,9 +6,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import { useDispatch } from "react-redux";
-import { deleteVideo } from "../../redux/slice/videoSlice";
+import {useTheme} from "@material-ui/core/styles";
+import {useDispatch} from "react-redux";
+import {deleteVideo} from "../../redux/slice/videoSlice";
 
 interface Props {
   _id: string;
@@ -16,14 +16,14 @@ interface Props {
   description: string;
   thumbnail: string;
   url: string;
-  creation_date: string;
+  creationDate: string;
   option: "delete";
   open: boolean;
   handleClose: () => void;
 }
 
 export default function ConfirmDialog(props: Props) {
-  const { _id, title, open, option, handleClose } = props;
+  const {_id, title, open, option, handleClose} = props;
   const dispatch = useDispatch();
 
   const theme = useTheme();

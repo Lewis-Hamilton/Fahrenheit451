@@ -2,7 +2,6 @@ import {
   Avatar,
   Button,
   Card,
-  CardActions,
   CardContent,
   createStyles,
   Divider,
@@ -19,14 +18,14 @@ import {
   Theme,
   Typography,
 } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import { AccountCircle, ExitToApp } from "@material-ui/icons";
-import React, { useState } from "react";
-import { RootState } from "../../redux/reducers";
+import {useDispatch, useSelector} from "react-redux";
+import {AccountCircle, ExitToApp} from "@material-ui/icons";
+import React, {useState} from "react";
+import {RootState} from "../../redux/reducers";
 import firebase from "firebase";
-import { Dispatch } from "redux";
-import { setUserData } from "../../redux/slice/userSlice";
-import { useEffect } from "react";
+import {Dispatch} from "redux";
+import {setUserData} from "../../redux/slice/userSlice";
+import {useEffect} from "react";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -49,13 +48,13 @@ const useStyles = makeStyles((theme: Theme) =>
       width: theme.spacing(4),
       height: theme.spacing(4),
     },
-  })
+  }),
 );
 
 const LoginMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [signUp, setSignUp] = useState<boolean>(false);
-  const [login, setLogin] = useState<boolean>(true);
+  const [, setLogin] = useState<boolean>(true);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const user = useSelector((state: RootState) => state.user);
@@ -80,7 +79,7 @@ const LoginMenu = () => {
   };
 
   const switchSignUp = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
     event.preventDefault();
     setSignUp(true);
@@ -88,7 +87,7 @@ const LoginMenu = () => {
   };
 
   const switchLogin = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+      event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
     event.preventDefault();
     setLogin(true);
@@ -117,21 +116,21 @@ const LoginMenu = () => {
 
   const signout = () => {
     firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        dispatch(
-          setUserData({
-            uid: "",
-            photoURL: "",
-            email: "",
-            displayName: "",
-          })
-        );
-      })
-      .catch(function (error) {
+        .auth()
+        .signOut()
+        .then(function() {
+          dispatch(
+              setUserData({
+                uid: "",
+                photoURL: "",
+                email: "",
+                displayName: "",
+              }),
+          );
+        })
+        .catch(function(error) {
         // An error happened.
-      });
+        });
   };
 
   return (
@@ -161,7 +160,7 @@ const LoginMenu = () => {
         anchorEl={anchorEl}
         onClose={handleClose}
       >
-        <Card style={{ maxWidth: "300px" }}>
+        <Card style={{maxWidth: "300px"}}>
           {user.uid ? (
             <>
               <CardContent>
@@ -251,7 +250,7 @@ const LoginMenu = () => {
                   <Typography variant='caption'>
                     {!signUp ? (
                       <Link onClick={switchSignUp} color='inherit'>
-                        Don't have an account?
+                        Don&apos;t have an account?
                       </Link>
                     ) : (
                       <Link onClick={switchLogin} color='inherit'>

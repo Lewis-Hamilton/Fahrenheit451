@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import React, {useState} from "react";
+import {makeStyles, Theme, createStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import IconButton from "@material-ui/core/IconButton";
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 28,
       margin: 4,
     },
-  })
+  }),
 );
 
 interface Props {
@@ -33,11 +33,11 @@ interface Props {
 
 export default function VideoSearch(props: Props) {
   const classes = useStyles();
-  const { search } = props;
+  const {search} = props;
   const [term, setTerm] = useState<string>("");
 
   const handleSearch = (
-    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+      event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
   ) => {
     setTerm(event.currentTarget.value);
   };
@@ -61,7 +61,7 @@ export default function VideoSearch(props: Props) {
         onChange={handleSearch}
         className={classes.input}
         placeholder='Search'
-        inputProps={{ "aria-label": "search" }}
+        inputProps={{"aria-label": "search"}}
       />
       <IconButton
         disabled={!term}

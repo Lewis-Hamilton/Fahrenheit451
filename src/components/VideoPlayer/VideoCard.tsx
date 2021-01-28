@@ -9,7 +9,7 @@ import {
   CardActionArea,
 } from "@material-ui/core";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 interface Props {
   _id: string;
@@ -45,11 +45,11 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 38,
       width: 38,
     },
-  })
+  }),
 );
 
 export const VideoCard = (props: Props) => {
-  const { _id, title, description, thumbnail } = props;
+  const {_id, title, description, thumbnail} = props;
   const classes = useStyles();
   const history = useHistory();
 

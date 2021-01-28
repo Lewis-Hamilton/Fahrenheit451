@@ -1,17 +1,17 @@
-import { Card, CardContent, Grid, Typography } from "@material-ui/core";
+import {Card, CardContent, Grid, Typography} from "@material-ui/core";
 import React from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { RootState } from "../../redux/reducers";
-import { searchVideoResults } from "../../redux/slice/searchSlice";
-import { VideoCard } from "../VideoPlayer/VideoCard";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation} from "react-router-dom";
+import {RootState} from "../../redux/reducers";
+import {searchVideoResults} from "../../redux/slice/searchSlice";
+import {VideoCard} from "../VideoPlayer/VideoCard";
 import queryString from "query-string";
 
 const SearchResults = () => {
   const dispatch = useDispatch();
-  const { videoData, currentVideoData } = useSelector(
-    (state: RootState) => state.search
+  const {videoData, currentVideoData} = useSelector(
+      (state: RootState) => state.search,
   );
   const location = useLocation();
 
@@ -30,7 +30,9 @@ const SearchResults = () => {
         <Grid container alignContent='center' alignItems='center'>
           <Card>
             <CardContent>
-              <Typography>No results found for "{parsed.search}"</Typography>
+              <Typography>
+                No results found for &quot;{parsed.search}&quot;
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
