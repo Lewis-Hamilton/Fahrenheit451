@@ -12,9 +12,8 @@ const Home = () => {
   };
 
   return (
-    <>
+  <div style={{position: 'fixed', overflow: 'hidden', height: '100%', width: '100%', backgroundImage: 'url("/banner.png")', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',}}>
       <TitleComponent title="Home" />
-      <div style={{ backgroundImage: 'url("/banner.png")', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '50vw',}}>
         <Grid style={{ paddingTop: '20%', textAlign: 'center'}}>
         <Grid item>
           <Typography variant="h1" component="h2" gutterBottom>Susan Wabbajack Sucks</Typography>
@@ -23,8 +22,7 @@ const Home = () => {
           <Button size="large" onClick={() => pushToRoute("/videos")} variant="outlined">Start Watching Now</Button>
         </Grid>
         </Grid>
-      </div>
-    </>
+    </div>
   )
 }
 export default Home;
