@@ -23,7 +23,11 @@ const AdminDashboard = () => {
   return (
     <>
       <TitleComponent title="Admin"/>
-      <Grid container spacing={3}>
+      <Grid
+        style={{paddingLeft: "5%", paddingRight: "5%", paddingTop: "2%"}}
+        container
+        spacing={3}
+      >
         <Grid item xs={12} sm={6}>
           <Publish />
         </Grid>

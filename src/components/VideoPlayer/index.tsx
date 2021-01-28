@@ -68,7 +68,11 @@ const VideoPlayer = () => {
         />
         <title>{videos.length ? videoData[_id].title : ""}</title>
       </Helmet>
-      <Grid container spacing={2}>
+      <Grid
+        container
+        style={{paddingLeft: "5%", paddingRight: "5%", paddingTop: "2%"}}
+        spacing={2}
+      >
         <Grid style={{minHeight: "700px"}} item xs={12} sm={12}>
           <iframe
             title={videos.length ? videoData[_id].title : ""}
