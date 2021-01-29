@@ -9,11 +9,11 @@ import {
   createStyles,
   Theme,
 } from "@material-ui/core";
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { useHistory } from "react-router-dom";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import {useHistory} from "react-router-dom";
 import React from "react";
-import { red } from "@material-ui/core/colors";
+import {red} from "@material-ui/core/colors";
 import ConfirmDialog from "./confirmDialog";
 import moment from "moment";
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: theme.spacing(5),
       height: theme.spacing(5),
     },
-  })
+  }),
 );
 
 interface Props {
@@ -40,7 +40,7 @@ interface Props {
   description: string;
   thumbnail: string;
   url: string;
-  creation_date: string;
+  creationDate: string;
 }
 
 const VideoPreview = (props: Props) => {
@@ -60,7 +60,7 @@ const VideoPreview = (props: Props) => {
   };
 
   const classes = useStyles();
-  const { _id, title, description, thumbnail, creation_date } = props;
+  const {_id, title, thumbnail, creationDate} = props;
 
   return (
     <>
@@ -71,23 +71,23 @@ const VideoPreview = (props: Props) => {
             image={thumbnail}
             title={title}
           />
-          </CardActionArea>
-          <CardContent>
-            <Grid container spacing={0}>
-              <Grid item xs={10}>
-                <Typography gutterBottom variant='h6' component='h2'>
-                  {title}
-                </Typography>
-              </Grid>
-              <Grid item xs={10}>
-                <Typography color='textSecondary' component='p'>
-                  Posted {moment(creation_date, "YYYYMMDD").fromNow()}
-                </Typography>
-              </Grid>
-              <Grid item><EditIcon /></Grid>
-              <Grid item><DeleteIcon onClick={handleClickOpenDialog} /></Grid>
+        </CardActionArea>
+        <CardContent>
+          <Grid container spacing={0}>
+            <Grid item xs={10}>
+              <Typography gutterBottom variant='h6' component='h2'>
+                {title}
+              </Typography>
             </Grid>
-          </CardContent>
+            <Grid item xs={10}>
+              <Typography color='textSecondary' component='p'>
+                  Posted {moment(creationDate, "YYYYMMDD").fromNow()}
+              </Typography>
+            </Grid>
+            <Grid item><EditIcon /></Grid>
+            <Grid item><DeleteIcon onClick={handleClickOpenDialog} /></Grid>
+          </Grid>
+        </CardContent>
       </Card>
       <ConfirmDialog
         {...props}

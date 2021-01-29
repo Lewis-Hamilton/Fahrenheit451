@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import {combineReducers} from "redux";
 import videos from "../slice/videoSlice";
 import search from "../slice/searchSlice";
 import user from "../slice/userSlice";

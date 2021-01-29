@@ -1,14 +1,12 @@
 import {
   Button,
-  Card,
-  CardContent,
   CircularProgress,
   Grid,
   makeStyles,
   TextField,
 } from "@material-ui/core";
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./index.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +24,7 @@ interface Props {
 }
 
 const PublishForm = (props: Props) => {
-  const { addThumbnailByURL, requireDescription, addVideoByURL } = props;
+  const {addThumbnailByURL, requireDescription} = props;
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [thumbnail, setThumbnail] = useState<string>("");
@@ -37,9 +35,9 @@ const PublishForm = (props: Props) => {
 
   useEffect(() => {
     if (
-      (title !== "" && addThumbnailByURL
-        ? true
-        : description !== "" && thumbnail) ||
+      (title !== "" && addThumbnailByURL ?
+        true :
+        description !== "" && thumbnail) ||
       (uploadedImage !== "" && url !== "")
     ) {
       setFormComplete(true);
@@ -59,20 +57,20 @@ const PublishForm = (props: Props) => {
     // TODO: ADD LOADING BAR
     setLoading(true);
     Axios.post(
-      "https://susanwabbajacksucks.herokuapp.com/api/video/upload/manual?thumbnail=file",
-      payload
+        "https://susanwabbajacksucks.herokuapp.com/api/video/upload/manual?thumbnail=file",
+        payload,
     )
-      .then((response) => {
+        .then((response) => {
         // TODO: ADD SUCCESS TOAST
-        console.log(response);
-      })
-      .catch((err) => {
+          console.log(response);
+        })
+        .catch((err) => {
         // TODO: ADD ERROR TOAST
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+          console.log(err);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
   };
 
   const handleTitle = (event: any) => {
@@ -96,7 +94,7 @@ const PublishForm = (props: Props) => {
     if (input.target.files && input.target.files[0]) {
       const reader = new FileReader();
       const file = input.target.files[0];
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         const dataUrl = reader.result;
         setUploadedImage(dataUrl as string);
       };

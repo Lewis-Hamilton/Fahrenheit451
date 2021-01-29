@@ -7,7 +7,7 @@ export interface Video {
   description: string;
   url: string;
   thumbnail: string;
-  creation_date: string;
+  creationDate: string;
 }
 
 export interface VideoResults {

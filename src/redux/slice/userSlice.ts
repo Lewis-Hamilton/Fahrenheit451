@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 type UserData = {
   uid: string;
@@ -7,7 +7,7 @@ type UserData = {
   photoURL: string | null;
 };
 
-let initialState: UserData = {
+const initialState: UserData = {
   uid: "",
   email: null,
   displayName: null,
@@ -19,7 +19,7 @@ const userSlice = createSlice({
   initialState: initialState,
   reducers: {
     setUserData(state, action: PayloadAction<UserData>) {
-      const { uid, email, displayName, photoURL } = action.payload;
+      const {uid, email, displayName, photoURL} = action.payload;
       state.displayName = displayName;
       state.uid = uid !== null ? uid : "";
       state.photoURL = photoURL;
@@ -28,6 +28,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUserData } = userSlice.actions;
+export const {setUserData} = userSlice.actions;
 
 export default userSlice.reducer;

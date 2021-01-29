@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {
   searchVideo,
   Video,
   VideoResults,
 } from "../../api/susanwabbajacksucksAPI";
-import { AppThunk } from "../store";
+import {AppThunk} from "../store";
 
 interface VideoState {
   videoData: Record<string, Video>;
@@ -13,7 +13,7 @@ interface VideoState {
   error: string | null;
 }
 
-let initialState: VideoState = {
+const initialState: VideoState = {
   videoData: {},
   currentVideoData: [],
   isLoading: false,
@@ -35,8 +35,8 @@ const searchResults = createSlice({
   reducers: {
     searchVideoStart: startLoading,
     searchVideoFailure: loadingFailed,
-    searchVideoSuccess(state, { payload }: PayloadAction<VideoResults>) {
-      const { body } = payload;
+    searchVideoSuccess(state, {payload}: PayloadAction<VideoResults>) {
+      const {body} = payload;
       state.isLoading = false;
       state.error = null;
 
@@ -58,7 +58,7 @@ export const {
 export default searchResults.reducer;
 
 export const searchVideoResults = (search: string): AppThunk => async (
-  dispatch
+    dispatch,
 ) => {
   try {
     dispatch(searchVideoStart());

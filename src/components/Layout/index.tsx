@@ -1,6 +1,7 @@
-import { Container, createMuiTheme, ThemeProvider } from "@material-ui/core";
-import React, { FunctionComponent } from "react";
-import { ToastContainer } from "react-toastify";
+import {Container, createMuiTheme, ThemeProvider} from "@material-ui/core";
+import React, {FunctionComponent} from "react";
+import {ToastContainer} from "react-toastify";
+import PropTypes from "prop-types";
 
 const theme = createMuiTheme({
   palette: {
@@ -11,9 +12,9 @@ const theme = createMuiTheme({
   },
 });
 
-export const Layout: FunctionComponent = ({ children }) => {
+export const Layout: FunctionComponent = ({children}) => {
   return (
-    <Container maxWidth='xl'>
+    <Container maxWidth={false} style={{padding: 0}}>
       <ThemeProvider theme={theme}>
         <>
           {children}
@@ -32,4 +33,8 @@ export const Layout: FunctionComponent = ({ children }) => {
       </ThemeProvider>
     </Container>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.any,
 };

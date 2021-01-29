@@ -19,6 +19,7 @@
     "firebase": "^8.0.2",
     "moment": "^2.29.1",
     "mongodb": "^3.6.2",
+    "prop-types": "^15.7.2",
     "query-string": "^6.13.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -39,7 +40,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "eslintConfig": {
     "extends": [
@@ -64,6 +66,11 @@
     "@types/react-dom": "^16.9.9",
     "@types/react-helmet": "^6.1.0",
     "@types/react-redux": "^7.1.9",
-    "@types/react-router-dom": "^5.1.6"
+    "@types/react-router-dom": "^5.1.6",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-react": "^7.22.0"
   }
 }

@@ -6,21 +6,21 @@ import {
   InputAdornment,
   Typography,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { RootState } from "../../redux/reducers";
+import React, {useEffect, useState} from "react";
+import {useSelector, useDispatch} from "react-redux";
+import {useLocation} from "react-router-dom";
+import {RootState} from "../../redux/reducers";
 import "./index.css";
-import { VideoCard } from "./VideoCard";
-import { fetchVideos } from "../../redux/slice/videoSlice";
-import { Share } from "@material-ui/icons";
-import { setNotifcation } from "../../redux/slice/notificationSlice";
-import { Helmet } from "react-helmet";
+import {VideoCard} from "./VideoCard";
+import {fetchVideos} from "../../redux/slice/videoSlice";
+import {Share} from "@material-ui/icons";
+import {setNotifcation} from "../../redux/slice/notificationSlice";
+import {Helmet} from "react-helmet";
 
 const VideoPlayer = () => {
   const dispatch = useDispatch();
-  const { videoData, currentVideoData } = useSelector(
-    (state: RootState) => state.videos
+  const {videoData, currentVideoData} = useSelector(
+      (state: RootState) => state.videos,
   );
   const videos = currentVideoData.map((_id) => videoData[_id]);
   const location = useLocation();
@@ -39,15 +39,15 @@ const VideoPlayer = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard
-      .writeText(`https://susanwabbajacksucks.com/${location.pathname}`)
-      .finally(() => {
-        dispatch(
-          setNotifcation({
-            severity: "info",
-            message: "Copied link to clipboard",
-          })
-        );
-      });
+        .writeText(`https://susanwabbajacksucks.com/${location.pathname}`)
+        .finally(() => {
+          dispatch(
+              setNotifcation({
+                severity: "info",
+                message: "Copied link to clipboard",
+              }),
+          );
+        });
   };
 
   return (
@@ -68,13 +68,17 @@ const VideoPlayer = () => {
         />
         <title>{videos.length ? videoData[_id].title : ""}</title>
       </Helmet>
-      <Grid container spacing={2}>
-        <Grid style={{ minHeight: "700px" }} item xs={12} sm={12}>
+      <Grid
+        container
+        style={{paddingLeft: "5%", paddingRight: "5%", paddingTop: "2%"}}
+        spacing={2}
+      >
+        <Grid style={{minHeight: "700px"}} item xs={12} sm={12}>
           <iframe
             title={videos.length ? videoData[_id].title : ""}
             className='responsive-iframe'
             src={videos.length ? videoData[_id].url : ""}
-            allow='clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allow='clipboard-write;encrypted-media;gyroscope;picture-in-picture'
             allowFullScreen={true}
             frameBorder='0'
           />
@@ -82,7 +86,7 @@ const VideoPlayer = () => {
         <Grid container spacing={1} item xs={12} sm={12}>
           <Grid item xs={12} sm={10}>
             <Grid container spacing={2}>
-              <Typography style={{ flexGrow: 0.95 }} variant='h4'>
+              <Typography style={{flexGrow: 0.95}} variant='h4'>
                 {videos.length ? videoData[_id].title : ""}
               </Typography>
               {share ? (

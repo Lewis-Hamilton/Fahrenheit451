@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {toast} from "react-toastify";
 
 type NotificationData = {
   severity: "error" | "warning" | "info" | "success" | "";
   message: string;
 };
 
-let initialState: NotificationData = {
+const initialState: NotificationData = {
   severity: "",
   message: "",
 };
@@ -16,7 +16,7 @@ const notificationSlice = createSlice({
   initialState: initialState,
   reducers: {
     setNotifcation(state, action: PayloadAction<NotificationData>) {
-      const { severity, message } = action.payload;
+      const {severity, message} = action.payload;
       state.message = message;
       state.severity = severity;
 
@@ -45,6 +45,6 @@ const renderToast = (stuff: NotificationData) => {
   }
 };
 
-export const { setNotifcation } = notificationSlice.actions;
+export const {setNotifcation} = notificationSlice.actions;
 
 export default notificationSlice.reducer;

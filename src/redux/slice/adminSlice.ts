@@ -1,18 +1,21 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AdminByUidResult, getAdminByUid } from "../../api/susanwabbajacksucksAPI";
-import { AppThunk } from "../store";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {
+  AdminByUidResult,
+  getAdminByUid,
+} from "../../api/susanwabbajacksucksAPI";
+import {AppThunk} from "../store";
 
 type UserData = {
   admin: boolean;
   isLoading: boolean;
-  error: string | null; 
+  error: string | null;
 };
 
-let initialState: UserData = {
+const initialState: UserData = {
   admin: false,
   isLoading: false,
-  error: null
-}
+  error: null,
+};
 
 function startLoading(state: UserData) {
   state.isLoading = true;
@@ -27,18 +30,22 @@ const adminSlice = createSlice({
   name: "admin",
   initialState: initialState,
   reducers: {
-    getAdminSuccess(state, { payload }: PayloadAction<AdminByUidResult>) {
-      const { body } = payload;
+    getAdminSuccess(state, {payload}: PayloadAction<AdminByUidResult>) {
+      const {body} = payload;
       state.isLoading = false;
       state.error = null;
       state.admin = body;
     },
     getAdminFailure: loadingFailed,
-    getAdminStart: startLoading
+    getAdminStart: startLoading,
   },
 });
 
-export const { getAdminSuccess, getAdminFailure, getAdminStart } = adminSlice.actions;
+export const {
+  getAdminSuccess,
+  getAdminFailure,
+  getAdminStart,
+} = adminSlice.actions;
 
 export default adminSlice.reducer;
 
