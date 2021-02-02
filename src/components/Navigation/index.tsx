@@ -33,6 +33,8 @@ import VideoSearch from "./videoSearch";
 import LoginMenu from "./LoginMenu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import PropTypes from "prop-types";
+import "./index.css";
+import useWindowSize from "../../useWindowSize";
 
 const drawerWidth = 240;
 
@@ -105,7 +107,7 @@ export const Navigation: FunctionComponent = ({children}) => {
   const [open, setOpen] = React.useState(false);
   const {isLoading} = useSelector((state: RootState) => state.videos);
   const admin = useSelector((state: RootState) => state.admin);
-
+  const windowSize = useWindowSize();
 
   const pushToRoute = (route: string) => {
     history.push(route);
@@ -145,18 +147,26 @@ export const Navigation: FunctionComponent = ({children}) => {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar
-            alt="Conservative Christian logo"
-            src={Logo}
-            style={{marginRight: "10px"}}
-          />
-          <Typography variant='h6' noWrap>
+          {windowSize == "lg" || windowSize == "xlg" ? (
+             <>
+               <Avatar
+                 alt="Conservative Christian logo"
+                 src={Logo}
+                 style={{marginRight: "10px"}}
+               />
+               <Typography variant='h6' noWrap>
             Conservative Christian
-          </Typography>
-          <div className={classes.grow} />
+               </Typography>
+               <div className={classes.grow} />
+             </>) : ("")
+          }
           <VideoSearch search={search} />
-          <div style={{flexGrow: 0.6}} />
-          <LoginMenu />
+          {windowSize == "lg" || windowSize == "xlg" ? (
+             <>
+               <div style={{flexGrow: 0.6}} />
+               <LoginMenu />
+             </>) : ("")
+          }
         </Toolbar>
         {isLoading ? <LinearProgress color='secondary' /> : null}
         <Divider />
